@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{producto}}</title>
+    {% load static %}
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg  bg-dark">
+
+        <a class="navbar-brand" href="{%url  'index'%}">{{menu}}</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/producto">{{producto}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cliente">{{cliente}}</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Ventas
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/venta">{{venta}}</a>
+                        <a class="dropdown-item" href="/detalleFactura">{{detalleFactura}}</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">{{administrador}}</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <div class="container">
+
+        <div class="row mt-5">
+
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+
+                <div class="mt-xxs-0 mt-3 btn-group btn-group-toggle">
+                    <a href="{%url 'create_producto'%}" class="btn btn-sm btn-round btn-secondary">Nuevo Producto</a>
+                </div>
+                <table class="table  mt-2">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">PRODUCTO</th>
+                            <th scope="col">PRECIO</th>
+                            <th scope="col">STOCK</th>
+                            <th scope="col">IVA</th>
+                            <th scope="col">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in listarProducto %}
+                        <tr>
+                            <td>{{ producto.id }}</td>
+                            <td>{{ producto.descripcion }}</td>
+                            <td>{{ producto.precio }}</td>
+                            <td>{{ producto.stock }}</td>
+                            <td><input type="checkbox" {%if producto.iva %}checked{%endif%}>
+
+
+                            </td>
+                            <td>
+                                <ul>
+                                    <l1><a href="{% url 'edit_producto' producto.id %}" class="btn btn-sm btn-round btn-secondary text-light">Modifcar</a></l1>
+                                    <l1><a href="{% url 'delete_producto' producto.id %}" class="btn btn-sm btn-round btn-danger text-light">Eliminar</a></l1>
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="{% static 'bootstrap/js/jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+
+
+
+</body>
+
+</html>

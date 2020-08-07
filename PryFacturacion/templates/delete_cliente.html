@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar {{cliente.nombre}}</title>
+    {% load static %}
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row mt-5"></div>
+        <div class="row mt-5">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6">
+
+
+                <form class="mt-5" action="" method="post">
+                    {% csrf_token %}
+                    <h4 class="mt-5">Estas seguro de eliminar el cliente: {{ cliente.nombre }}</h4>
+                    <fieldset class="form-group mt-5">
+                        <button class="form-control  btn btn-success" type="submit">Eliminar</button>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <a class="form-control btn btn-danger" class="text-light" href="{% url 'view_cliente' %}">cancelar</a>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</body>
+
+</html>
